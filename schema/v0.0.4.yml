@@ -1,0 +1,58 @@
+Survey:
+  columns:
+    uid: 
+      type: string
+      unique: true
+    content: text
+  relationships:
+    answers:
+      entity: SurveyAnswer
+      toMany: true
+      inverse: survey
+    propertyGroups:
+      entity: SurveyPropertyGroup
+      toMany: true
+      inverse: survey
+      
+SurveyAnswer:
+  columns:
+    uid: 
+      type: string
+      unique: true
+    content: text
+    completed:
+      type: bool
+      default: false
+  relationships:
+    survey:
+      entity: Survey
+      inverse: answers
+
+SurveyPropertyGroup:
+  columns:
+    code: 
+      type: string
+      unique: true
+    name: string
+  relationships:
+    survey:
+      entity: Survey
+      inverse: propertyGroups
+    properties:
+      entity: SurveyProperty
+      toMany: true
+      inverse: groups
+
+SurveyProperty:
+  columns:
+    code: 
+      type: string
+      unique: true
+    name: string
+  relationships:
+    groups:
+      entity: SurveyPropertyGroup
+      toMany: true
+      inverse: properties
+
+    

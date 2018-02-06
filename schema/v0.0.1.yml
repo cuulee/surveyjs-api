@@ -1,0 +1,23 @@
+Survey:
+  columns:
+    uid: 
+      type: string
+      unique: true
+    content: text
+  relationships:
+    answers:
+      entity: SurveyAnswer
+      toMany: true
+      inverse: survey
+      
+SurveyAnswer:
+  columns:
+    uid: 
+      type: string
+      unique: true
+    content: text
+  relationships:
+    survey:
+      entity: Survey
+      inverse: answers
+    
