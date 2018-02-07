@@ -1,7 +1,8 @@
 Survey:
   columns:
     uid: 
-      type: string
+      type: uuid
+      default: uuidv4
       unique: true
     name: string
     content: text
@@ -18,7 +19,8 @@ Survey:
 SurveyAnswer:
   columns:
     uid: 
-      type: string
+      type: uuid
+      default: uuidv4
       unique: true
     content: text
     completed:
