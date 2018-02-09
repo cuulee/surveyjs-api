@@ -1,0 +1,46 @@
+type SurveyByUID {
+  uid: String!
+  name: String
+  content: String
+  propertyGroups: [SurveyPropertyGroupByUID!]!
+}
+
+type SurveyPropertyGroupByUID {
+  code: String
+  name: String
+  properties: [SurveyPropertyByUID!]!
+}
+
+type SurveyPropertyByUID {
+  code: String
+  name: String
+}
+
+type SurveyAnswerByUID {
+  uid: String!
+  content: String
+  completed: Boolean
+  survey: SurveyByUID
+}
+
+type Query {
+  surveyByUID(uid: String!): SurveyByUID
+  surveyAnswerByUID(uid: String!): SurveyAnswerByUID
+}
+
+input UpdateSurveyByUIDInput {
+  content: String
+}
+
+input UpdateSurveyAnswerByUIDInput {
+  content: String
+  completed: Boolean
+}
+
+type Mutation {
+  updateSurveyByUID(uid: String!, input: UpdateSurveyByUIDInput): SurveyByUID
+  updateSurveyAnswerByUID(
+    uid: String!
+    input: UpdateSurveyAnswerByUIDInput
+  ): SurveyAnswerByUID
+}
