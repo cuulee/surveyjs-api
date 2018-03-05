@@ -1,0 +1,72 @@
+Survey:
+  columns:
+    uid: 
+      type: uuid
+      default: uuidv4
+      unique: true
+    name: string
+    content: text
+  relationships:
+    answers:
+      entity: SurveyAnswer
+      toMany: true
+      inverse: survey
+    propertyGroups:
+      entity: SurveyPropertyGroup
+      toMany: true
+      inverse: survey
+      
+SurveyAnswer:
+  columns:
+    uid: 
+      type: uuid
+      default: uuidv4
+      unique: true
+    content: text
+    sent: date
+  relationships:
+    survey:
+      entity: Survey
+      inverse: answers
+    tags:
+      entity: SurveyAnswerTag
+      toMany: true
+      inverse: answers
+
+SurveyPropertyGroup:
+  columns:
+    code: 
+      type: string
+      unique: true
+    name: string
+  relationships:
+    survey:
+      entity: Survey
+      inverse: propertyGroups
+    properties:
+      entity: SurveyProperty
+      toMany: true
+      inverse: groups
+
+SurveyProperty:
+  columns:
+    code: 
+      type: string
+      unique: true
+    name: string
+  relationships:
+    groups:
+      entity: SurveyPropertyGroup
+      toMany: true
+      inverse: properties
+
+SurveyAnswerTag:
+  columns:
+    uid:
+      type: string
+      unique: true
+  relationships:
+    answers:
+      entity: SurveyAnswer
+      toMany: true
+      inverse: tags

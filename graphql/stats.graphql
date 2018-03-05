@@ -1,0 +1,27 @@
+type SurveyStats {
+  answers(tags: [String!]): SurveyAnswerStats!
+}
+
+type SurveyAnswerStatsMetric {
+  key: String!
+  min: Float!
+  max: Float!
+  average: Float!
+}
+
+type SurveyAnswerStatsOccurency {
+  key: String!
+  value: String!
+  type: String!
+  count: Float!
+}
+
+type SurveyAnswerStats {
+  count: Int!
+  metrics: [SurveyAnswerStatsMetric!]
+  occurencies: [SurveyAnswerStatsOccurency!]
+}
+
+type Query {
+  surveyStats(survey: String!): SurveyStats
+}

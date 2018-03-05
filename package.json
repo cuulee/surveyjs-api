@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "js-core-data-graphql": "^0.2.11",
-    "nappjs": "^0.5.4",
-    "nappjs-core-data": "^0.2.4",
-    "nappjs-core-data-graphql": "^0.1.5",
+    "nappjs": "^0.5.5",
+    "nappjs-core-data": "^0.2.5",
+    "nappjs-core-data-graphql": "^0.1.6",
     "nappjs-graphql-api": "^0.3.4"
   },
   "scripts": {

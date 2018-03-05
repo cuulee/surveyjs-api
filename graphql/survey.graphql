@@ -19,7 +19,7 @@ type SurveyPropertyByUID {
 type SurveyAnswerByUID {
   uid: String!
   content: String
-  completed: Boolean
+  sent: String
   survey: SurveyByUID
 }
 
@@ -34,7 +34,7 @@ input UpdateSurveyByUIDInput {
 
 input UpdateSurveyAnswerByUIDInput {
   content: String
-  completed: Boolean
+  sent: String
 }
 
 type Mutation {
