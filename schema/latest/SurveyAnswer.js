@@ -45,7 +45,7 @@ class SurveyAnswer extends ManagedObject {
         newStats.push({
           key,
           value: val,
-          type: typeof val
+          type: this.typeofValue(val)
         });
 
         let firstKey = key.split(".")[0];
@@ -58,7 +58,7 @@ class SurveyAnswer extends ManagedObject {
               newStats.push({
                 key: `$${group.name}.${prop}`,
                 value: val,
-                type: typeof val
+                type: this.typeofValue(val)
               });
             }
           }
@@ -85,6 +85,13 @@ class SurveyAnswer extends ManagedObject {
         context.deleteObject(stat);
       }
     }
+  }
+
+  typeofValue(value) {
+    if (parseFloat(value)) {
+      return "number";
+    }
+    return "string";
   }
 }
 

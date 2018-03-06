@@ -45,7 +45,7 @@ class Survey extends ManagedObject {
         "SELF.answer.tags.code": tags,
         "SELF.answer.sent!": null
       },
-      group: "SELF.key,SELF.value"
+      group: "SELF.key,SELF.value,SELF.type"
     });
   }
 
