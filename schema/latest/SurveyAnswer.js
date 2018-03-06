@@ -49,7 +49,10 @@ class SurveyAnswer extends ManagedObject {
         });
 
         let firstKey = key.split(".")[0];
-        if (surveyQuestions[firstKey].groups.length > 0) {
+        if (
+          surveyQuestions[firstKey] &&
+          surveyQuestions[firstKey].groups.length > 0
+        ) {
           for (let group of surveyQuestions[firstKey].groups) {
             for (let prop of group.properties) {
               newStats.push({
