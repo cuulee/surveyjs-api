@@ -1,0 +1,80 @@
+title: Survey administration
+url: '${API_URL}/graphql'
+apiType: graphql
+basePath: '${BASE_PATH}/'
+auth:
+  grantType: password
+  authorizeUrl: http://accounts.muniprojects.com/auth/token
+  clientId: default_client
+  clientSecret: 123456
+entities:
+  surveys:
+    name: Surveys
+    fields:
+      - attribute: uid
+        hidden: true
+      - attribute: name
+        label: Name
+        main: true
+      - attribute: propertyGroups_id
+        label: Property groups
+        type: reference
+        toMany: true
+        entity: surveyPropertyGroups
+        targetField: name
+    list:
+      listActions:
+        - title: Editor
+          action: redirect
+          url: '/survey/?survey={{values.uid}}&access_token={{auth.access_token}}'
+          target: _blank
+  surveyAnswers:
+    name: Answers
+    fields:
+      - attribute: uid
+        main: true
+        readonly: true
+      - attribute: sent
+        type: datetime
+        readonly: true
+      - attribute: survey_id
+        label: Survey
+        type: reference
+        entity: surveys
+        targetField: name
+        # template: '{{survey}}aa'
+      - attribute: survey_uid
+        foreignKey: survey_id
+        name: test
+        type: reference
+        entity: surveys
+        hidden: true
+        template: '{{uid}}'
+    list:
+      listActions:
+        - title: View
+          action: redirect
+          url: '/survey/survey.html?survey={{values.survey_uid}}&answer={{values.uid}}&access_token={{auth.access_token}}'
+          target: _blank
+  surveyPropertyGroups:
+    name: Property Groups
+    edit:
+      tabs:
+        - title: Properties
+          itemTitle: '{{code}} - {{name}}'
+          order: code
+          reference:
+            entity: surveyProperties
+            attribute: groups_id
+          fields:
+            - attribute: code
+            - attribute: name
+    fields:
+      - attribute: code
+        label: Kód
+        main: true
+      - attribute: name
+        label: Název
+        main: true
+  surveyProperties:
+    hidden: true
