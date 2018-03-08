@@ -43,18 +43,11 @@ entities:
         entity: surveys
         targetField: name
         # template: '{{survey}}aa'
-      - attribute: survey_uid
-        foreignKey: survey_id
-        name: test
-        type: reference
-        entity: surveys
-        hidden: true
-        template: '{{uid}}'
     list:
       listActions:
         - title: View
           action: redirect
-          url: '/survey/survey.html?survey={{values.survey_uid}}&answer={{values.uid}}&access_token={{auth.access_token}}'
+          url: '/survey/survey.html?answer={{values.uid}}&access_token={{auth.access_token}}'
           target: _blank
   surveyPropertyGroups:
     name: Property Groups
